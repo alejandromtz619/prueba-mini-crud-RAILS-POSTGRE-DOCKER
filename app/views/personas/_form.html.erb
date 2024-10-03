@@ -1,0 +1,38 @@
+<%= form_with(model: persona) do |form| %>
+  <% if persona.errors.any? %>
+    <div id="error_explanation" class="alert alert-danger">
+      <h2><%= pluralize(persona.errors.count, "error") %> no se puede guardar:</h2>
+
+      <ul>
+        <% persona.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <% if @persona.errors.include?(:cargo_id) %>
+  <div class="alert alert-danger" role="alert">
+    ¡Debes seleccionar un cargo!
+  </div>
+  <% end %>
+
+  <div class="form-group mb-3">
+    <%= form.label :nombre %>
+    <%= form.text_field :nombre, class: 'form-control' %>
+  </div>
+
+  <div class="form-group mb-3">
+    <%= form.label :edad %>
+    <%= form.number_field :edad, class: 'form-control' %>
+  </div>
+
+  <div class="form-group mb-3">
+    <%= form.label :cargo %>
+    <%= form.collection_select :cargo_id, Cargo.all, :id, :descripcion, prompt: 'Seleccionar cargo' %>
+  </div>
+
+  <div class="d-flex justify-content-end">
+    <%= form.submit 'Guardar', class: 'btn btn-primary me-2' %>
+    <%= link_to 'Cancelar', personas_path, class: 'btn btn-secondary' %>
+  </div>
+<% end %>

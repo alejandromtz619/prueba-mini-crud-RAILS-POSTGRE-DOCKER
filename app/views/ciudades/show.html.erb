@@ -1,0 +1,34 @@
+<div class="container mt-4">
+  <!-- Notificación -->
+  <% if notice %>
+    <div class="alert alert-info alert-dismissible fade show" role="alert" id="notice">
+      <%= notice %>
+      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+  <% end %>
+
+  <!-- Detalles de Ciudad -->
+  <div class="card shadow-sm">
+    <div class="card-body">
+      <h2 class="card-title mb-4">Detalles de la Ciudad</h2>
+
+      <!-- Ciudad -->
+      <p class="mb-3">
+        <strong>Ciudad:</strong>
+        <span class="text-muted"><%= @ciudade.ciudad %></span>
+      </p>
+
+      <!-- País -->
+      <p class="mb-4">
+        <strong>País:</strong>
+        <span class="text-muted"><%= @ciudade.paise.pais %></span>
+      </p>
+
+      <!-- Botones de acción -->
+      <div class="d-flex justify-content-between">
+        <%= link_to 'Editar', edit_ciudade_path(@ciudade), class: "btn btn-primary me-2" %>
+        <%= link_to 'Volver', ciudades_path, class: "btn btn-secondary" %>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,30 @@
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-md-8">
+      <div class="card">
+        <div class="card-header">
+          <h2>Detalles de la Persona</h2>
+        </div>
+        <div class="card-body">
+          <ul class="list-group list-group-flush">
+            <li class="list-group-item"><strong>ID:</strong> <span class="badge bg-primary"><%= @persona.id %></span></li>
+            <li class="list-group-item"><strong>Nombre:</strong> <%= @persona.nombre %></li>
+            <li class="list-group-item"><strong>Edad:</strong> <%= @persona.edad %></li>
+            <li class="list-group-item"><strong>Cargo:</strong> 
+              <% if @persona.cargo %>
+                <%= @persona.cargo.descripcion %>
+              <% else %>
+                N/A
+              <% end %>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="card-footer text-muted">
+        <%= link_to 'Editar', edit_persona_path(@persona), class: "btn btn-primary" %> |
+        <%= link_to 'Volver', personas_path, class: "btn btn-secondary" %>
+      </div>
+    </div>
+  </div>
+</div>

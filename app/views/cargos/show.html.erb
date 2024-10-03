@@ -1,0 +1,23 @@
+<div class="card">
+  <div class="card-body">
+    <p class="card-text">
+      <%= notice %>
+    </p>
+
+    <dl class="row">
+      <dt class="col-sm-3">ID:</dt>
+      <dd class="col-sm-9"><%= @cargo.id %></dd>
+      
+      <dt class="col-sm-3">Descripción:</dt>
+      <dd class="col-sm-9"><%= @cargo.descripcion %></dd>
+
+      <dt class="col-sm-3">Sueldo:</dt>
+      <dd class="col-sm-9"><%= number_to_currency @cargo.sueldo %></dd>
+    </dl>
+
+    <div class="d-flex justify-content-end">
+      <%= link_to 'Editar', edit_cargo_path(@cargo), class: 'btn btn-primary' %>
+      <%= link_to 'Volver', cargos_path, class: 'btn btn-secondary ml-2' %>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,11 @@
+<div class="card-body">
+  <h5 class="card-title"><%= persona.nombre %></h5>
+  <% if persona.cargo %>
+    <p class="card-text">Cargo: <%= persona.cargo.descripcion %></p>
+  <% end %>
+  <%= link_to "Editar", edit_persona_path(persona) %>
+  <%= link_to "Borrar", persona_path(persona), data: { turbo_method: :delete }, class: "text-danger" %>
+</div>
+<div class="card-footer d-flex justify-content-between">
+  <span class="card-edad"><%= persona.edad %></span>
+</div>

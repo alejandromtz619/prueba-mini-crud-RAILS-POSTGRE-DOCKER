@@ -1,0 +1,45 @@
+
+<%= form_with(model: ubicacione) do |form| %>
+  <% if ubicacione.errors.any? %>
+    <div id="error_explanation" class="alert alert-danger">
+      <h2><%= pluralize(ubicacione.errors.count, "error") %> no se puede guardar:</h2>
+
+      <ul>
+        <% ubicacione.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <% if @ubicacione.errors.include?(:pais_id) %>
+    <div class="alert alert-danger" role="alert">
+      ¡Debes seleccionar un pais!
+    </div>
+  <% end %>
+  <% if @ubicacione.errors.include?(:ciudad_id) %>
+    <div class="alert alert-danger" role="alert">
+      ¡Debes seleccionar una ciudad!
+    </div>
+  <% end %>
+
+  <div class="form-group mb-3">
+    <%= form.label :Direccion %>
+    <%= form.text_field :direccion, class: 'form-control' %>
+  </div>
+  
+  <div class="form-group mb-3">
+    <%= form.label :Pais %>
+    <%= form.collection_select :pais_id, Paise.all, :id, :pais, prompt: 'Seleccionar pais' %>
+  </div>
+
+  <div class="form-group mb-3">
+    <%= form.label :Ciudad %>
+    <%= form.collection_select :ciudad_id, Ciudade.all, :id, :ciudad, prompt: 'Seleccionar ciudad' %>
+  </div>
+
+  <div class="d-flex justify-content-end">
+    <%= form.submit 'Guardar', class: 'btn btn-primary me-2' %>
+    <%= link_to 'Cancelar', ubicaciones_path, class: 'btn btn-secondary' %>
+  </div>
+<% end %>

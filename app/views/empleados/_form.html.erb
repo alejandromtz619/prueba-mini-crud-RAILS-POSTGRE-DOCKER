@@ -1,0 +1,29 @@
+<%= form_with(model: empleado) do |form| %>
+  <% if empleado.errors.any? %>
+    <div id="error_explanation" class="alert alert-danger">
+      <h2><%= pluralize(empleado.errors.count, "error") %> no se puede guardar:</h2>
+
+      <ul>
+        <% empleado.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="form-group mb-3">
+    <%= form.label :Persona %>
+    <%= form.collection_select :persona_id, @personas, :id, :nombre, prompt: 'Seleccionar Persona' %>
+  </div>
+
+  <div class="form-group mb-3">
+    <%= form.label :Ubicación %>
+    <%= form.collection_select :ubicacion_id, @ubicaciones, :id, :direccion, prompt: 'Seleccionar Ubicación' %>
+  </div>
+
+
+  <div class="d-flex justify-content-end">
+    <%= form.submit 'Guardar', class: 'btn btn-primary me-2' %>
+    <%= link_to 'Cancelar', empleados_path, class: 'btn btn-secondary' %>
+  </div>
+<% end %>

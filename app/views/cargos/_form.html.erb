@@ -1,0 +1,23 @@
+
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-md-6">
+
+      <%= simple_form_for(@cargo) do |f| %>
+        <%= f.error_notification %>
+        <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
+
+        <div class="card">
+          <div class="card-body">
+            <%= f.input :descripcion, label: 'Descripción', input_html: { class: 'form-control' } %>
+            <%= f.input :sueldo, label: 'Sueldo', input_html: { class: 'form-control' } %>
+          </div>
+        </div>
+
+        <div class="card-footer text-center">
+          <%= f.button :submit, value: 'Guardar', class: 'btn btn-primary' %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,18 @@
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-md-8">
+      <h2 class="text-center mb-4">Editar Cargo</h2>
+
+      <div class="card">
+        <div class="card-body">
+          <%= render 'form', cargo: @cargo %>
+        </div>
+      </div>
+
+      <div class="card-footer text-center">
+        <%= link_to 'Mostrar', @cargo, class: 'btn btn-secondary' %> |
+        <%= link_to 'Volver', cargos_path, class: 'btn btn-secondary' %>
+      </div>
+    </div>
+  </div>
+</div>

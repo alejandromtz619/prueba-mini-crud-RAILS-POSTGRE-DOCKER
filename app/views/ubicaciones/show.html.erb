@@ -1,0 +1,27 @@
+<div class="container">
+  <h1 class="mt-4">Detalles de la Ubicación</h1>
+
+  <div class="row">
+    <div class="col-md-6">
+      <p>
+        <strong>Dirección:</strong>
+        <%= @ubicacione.direccion %>
+      </p>
+      <p>
+        <strong>Ciudad:</strong>
+        <%= @ubicacione.ciudade.ciudad %>
+      </p>
+      <p>
+        <strong>País:</strong>
+        <%= @ubicacione.paise.pais %>
+      </p>
+    </div>
+  </div>
+
+  <div class="row mt-3">
+    <div class="col-md-12">
+      <%= link_to 'Editar', edit_ubicacione_path(@ubicacione), class: 'btn btn-primary' %>
+      <%= link_to 'Volver', ubicaciones_path, class: 'btn btn-secondary' %>
+    </div>
+  </div>
+</div>

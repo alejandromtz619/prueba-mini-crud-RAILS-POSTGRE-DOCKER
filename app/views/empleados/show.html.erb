@@ -1,0 +1,39 @@
+<div class="container">
+  <h1 class="mt-4">Detalles del Empleado</h1>
+
+  <div class="row">
+    <div class="col-md-6">
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title">Información Personal</h5>
+          <p class="card-text">
+            <strong>Nombre:</strong> <%= @empleado.persona.nombre %>
+            <br>
+            <strong>Cargo:</strong> <%= @empleado.cargo.descripcion %>
+          </p>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-6">
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title">Información de Ubicación</h5>
+          <p class="card-text">
+            <strong>Dirección:</strong> <%= @empleado.ubicacione.direccion %>
+            <br>
+            <strong>Ciudad:</strong> <%= @empleado.ciudade.ciudad %>
+            <br>
+            <strong>País:</strong> <%= @empleado.paise.pais %>
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row mt-3">
+    <div class="col-md-12">
+      <%= link_to 'Editar', edit_empleado_path(@empleado), class: 'btn btn-primary' %>
+      <%= link_to 'Volver', empleados_path, class: 'btn btn-secondary' %>
+    </div>
+  </div>
+</div>

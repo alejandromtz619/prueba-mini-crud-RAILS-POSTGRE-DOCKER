@@ -1,0 +1,49 @@
+<div class="jumbotron bg-primary text-white">
+  <h1 class="display-4">Ciudades</h1>
+</div>
+
+  <% if notice %>
+    <p class="alert alert-info"><%= notice %></p>
+  <% end %>
+
+  <table class="table table-striped" style="margin: 0; padding: 0;">
+    <thead>
+      <tr>
+        <th scope="col">Id</th>
+        <th scope="col">Ciudad</th>
+        <th scope="col">Pais</th>
+        <th colspan="3" class="text-center">Acciones</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% @ciudades.each do |ciudade| %>
+        <tr>
+          <th scope="row"><%= ciudade.id %></th>
+          <td><%= ciudade.ciudad %></td>
+          <td><%= ciudade.pais_id ? ciudade.paise.pais : "Sin datos" %></td>
+          <td class="col-md-2 text-center">
+            <%= link_to 'Mostrar', ciudade, class: "btn btn-warning" %>
+          </td>
+          <td class="col-md-2 text-center">
+            <%= link_to 'Editar', edit_ciudade_path(ciudade), class: "btn btn-primary" %>
+          </td>
+          <td class="col-md-2 text-center">
+            <%= link_to 'Borrar', ciudade, method: :delete, data: { confirm: 'Estas seguro?' }, class: "btn btn-danger" %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+
+  <br>
+
+  <%= link_to "Nueva Ciudad", new_ciudade_path, class: "btn btn-success opacity-75" %>
+
+  <div class="mt-3 p-3">
+    <div class="row">
+      <div class="col-12">
+        </div>
+    </div>
+  </div>
+</div>
