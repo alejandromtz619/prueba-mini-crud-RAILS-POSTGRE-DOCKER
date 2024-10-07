@@ -33,7 +33,14 @@
 
   <div class="form-group mb-3">
     <%= form.label :bombas %> (Selecciona una o más bombas)<br>
-    <%= form.collection_select :bomba_ids, Bomba.all, :id, :descripcion, {include_blank: 'Ninguna'}, {multiple: true, class: 'form-control'} %>
+    <div class="form-check">
+      <% Bomba.all.each do |bomba| %>
+        <div class="form-check">
+          <%= check_box_tag 'cliente[bomba_ids][]', bomba.id, @cliente.bomba_ids.include?(bomba.id), class: "form-check-input" %>
+          <%= label_tag "bomba_#{bomba.id}", bomba.descripcion, class: "form-check-label" %>
+        </div>
+      <% end %>      
+    </div>
   </div>
 
   <div class="d-flex justify-content-end">
