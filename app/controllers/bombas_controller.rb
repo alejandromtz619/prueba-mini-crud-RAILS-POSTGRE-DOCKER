@@ -25,7 +25,7 @@ class BombasController < ApplicationController
 
     respond_to do |format|
       if @bomba.save
-        format.html { redirect_to @bomba, notice: "bomba was successfully created." }
+        format.html { redirect_to @bomba, notice: "La bomba ha sido creada con exito." }
         format.json { render :show, status: :created, location: @bomba }
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -38,7 +38,7 @@ class BombasController < ApplicationController
   def update
     respond_to do |format|
       if @bomba.update(bomba_params)
-        format.html { redirect_to @bomba, notice: "bomba was successfully updated." }
+        format.html { redirect_to @bomba, notice: "La bomba se actualizo con exito." }
         format.json { render :show, status: :ok, location: @bomba }
       else
         format.html { render :edit, status: :unprocessable_entity }
