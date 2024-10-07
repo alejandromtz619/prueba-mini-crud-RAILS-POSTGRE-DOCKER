@@ -1,0 +1,51 @@
+<div class="container mt-4">
+  <!-- Notificación -->
+  <% if notice %>
+    <div class="alert alert-info alert-dismissible fade show" role="alert" id="notice">
+      <%= notice %>
+      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+  <% end %>
+
+  <!-- Detalles del Cliente -->
+  <div class="card shadow-sm">
+    <div class="card-body">
+      <h2 class="card-title mb-4">Detalles de la Ciudad</h2>
+
+      <!-- Cliente -->
+      <p class="mb-3">
+        <strong>Cliente:</strong>
+        <span class="text-muted"><%= @cliente.nombre %></span>
+      </p>
+
+      <!-- Razon Social -->
+      <p class="mb-3">
+        <strong>Razon Social:</strong>
+        <span class="text-muted"><%= @cliente.razon_social %></span>
+      </p>
+
+      <!-- RUC -->
+      <p class="mb-3">
+        <strong>RUC:</strong>
+        <span class="text-muted"><%= @cliente.ruc %></span>
+      </p>
+
+      <!-- Bomba -->
+      <p class="mb-4">
+      <strong>Bombas:</strong>
+        <ul>
+          <% @cliente.bombas.each do |bomba| %>
+          <li><%= bomba.descripcion %></li>
+        <% end %>
+        </ul>
+      </p>
+
+
+      <!-- Botones de acción -->
+      <div class="d-flex justify-content-between">
+        <%= link_to 'Editar', edit_cliente_path(@cliente), class: "btn btn-primary me-2" %>
+        <%= link_to 'Volver', clientes_path, class: "btn btn-secondary" %>
+      </div>
+    </div>
+  </div>
+</div>

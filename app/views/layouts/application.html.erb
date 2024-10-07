@@ -4,7 +4,6 @@
   <title>MyApp</title>
   <%= csrf_meta_tags %>
   <%= csp_meta_tag %>
-
   <%= stylesheet_link_tag 'application', media: 'all' %>
   <%= javascript_pack_tag 'application' %>
 </head>
@@ -35,6 +34,12 @@
           </li>
           <li class="nav-item">
             <%= link_to 'Ciudades', ciudades_path, class: 'nav-link' %>
+          </li>
+          <li class="nav-item">
+            <%= link_to 'Clientes', clientes_path, class: 'nav-link' %>
+          </li>
+          <li class="nav-item">
+            <%= link_to 'Bombas', bombas_path, class: 'nav-link' %>
           </li>
         </ul>
       </div>

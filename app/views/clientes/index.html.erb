@@ -1,0 +1,127 @@
+<div class="jumbotron bg-primary text-white">
+  <h1 class="display-4">Clientes</h1>
+</div>
+
+  <% if notice %>
+    <p class="alert alert-info"><%= notice %></p>
+  <% end %>
+
+  <table class="table table-striped" style="margin: 0; padding: 0;">
+    <thead>
+      <tr>
+        <th scope="col">Id</th>
+        <th scope="col">Nombre</th>
+        <th scope="col">Razon Social</th>
+        <th scope="col">RUC</th>
+        <th scope="col">Bomba</th>
+        <th colspan="3" class="text-center">Acciones</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% @clientes.each do |cliente| %>
+        <tr>
+          <th scope="row"><%= cliente.id %></th>
+          <td><%= cliente.nombre %></td>
+          <td><%= cliente.razon_social %></td>
+          <td><%= cliente.ruc %></td>
+          <td>
+            <ul>
+              <% cliente.bombas.each do |bomba| %>
+                <li><%= bomba.descripcion %></li>
+              <% end %>
+            </ul>
+          </td>
+          <td class="col-md-2 text-center">
+            <%= link_to 'Mostrar', cliente, class: "btn btn-warning" %>
+          </td>
+          <td class="col-md-2 text-center">
+            <%= link_to 'Editar', edit_cliente_path(cliente), class: "btn btn-primary" %>
+          </td>
+          <td class="col-md-2 text-center">
+            <%= link_to 'Borrar', cliente, method: :delete, data: { confirm: 'Estas seguro?' }, class: "btn btn-danger" %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+
+  <br>
+
+  <%= link_to "Nuevo cliente", new_cliente_path, class: "btn btn-success opacity-75" %>
+
+  <!-- Selector de cliente -->
+<div class="form-group mb-3">
+  <label for="cliente-select">Selecciona un cliente para mostrar las bombas en el mapa:</label>
+  <select id="cliente-select" class="form-control" onchange="loadClientBombas(this.value)">
+    <option value="">Seleccionar cliente</option>
+    <% @clientes.each do |cliente| %>
+      <option value="<%= cliente.id %>"><%= cliente.nombre %></option>
+    <% end %>
+  </select>
+</div>
+
+<!-- Contenedor del mapa -->
+<!-- Div contenedor del mapa -->
+<div id="map" style="height: 500px; width: 100%;"></div>
+
+<script>
+  let map;
+  let markers = []; // Inicializamos el array de marcadores
+  
+  // Inicializar el mapa
+  function initMap() {
+    map = new google.maps.Map(document.getElementById('map'), {
+      center: { lat: -25.344, lng: 131.036 }, // Coordenadas iniciales
+      zoom: 5,
+    });
+  }
+  
+  // Cargar bombas de un cliente
+  function loadClientBombas(clienteId) {
+    console.log("Cargando bombas para cliente:", clienteId);
+    
+    if (!clienteId) return;
+
+    fetch(`/clientes/${clienteId}/bombas.json`)
+      .then(response => response.json())
+      .then(bombas => {
+        console.log("Bombas recibidas:", bombas);
+        clearMarkers();
+
+        bombas.forEach(bomba => {
+          const coords = bomba.coordenadas.split(',');
+          const lat = parseFloat(coords[0]);
+          const lng = parseFloat(coords[1]);
+
+          const marker = new google.maps.Marker({
+            position: { lat, lng },
+            map,
+            title: bomba.descripcion
+          });
+          markers.push(marker); // Añadimos cada marcador al array
+        });
+      });
+  }
+
+  // Eliminar los marcadores del mapa
+  function clearMarkers() {
+    for (let i = 0; i < markers.length; i++) {
+      markers[i].setMap(null); // Eliminar cada marcador del mapa
+    }
+    markers = []; // Vaciamos el array de marcadores
+  }
+</script>
+
+<!-- Carga de Google Maps API con callback para inicializar el mapa -->
+<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBpGDeQen8q4HDG9bKfTywSMU8B_L7rm5A&callback=initMap"></script>
+
+
+  <div class="mt-3 p-3">
+    <div class="row">
+      <div class="col-12">
+        </div>
+    </div>
+  </div>
+</div>
+

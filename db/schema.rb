@@ -10,10 +10,26 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2024_10_03_174618) do
+ActiveRecord::Schema.define(version: 2024_10_04_192841) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "bombas", force: :cascade do |t|
+    t.string "descripcion"
+    t.string "coordenadas"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "bombas_clientes", force: :cascade do |t|
+    t.bigint "bomba_id", null: false
+    t.bigint "cliente_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["bomba_id"], name: "index_bombas_clientes_on_bomba_id"
+    t.index ["cliente_id"], name: "index_bombas_clientes_on_cliente_id"
+  end
 
   create_table "cargos", force: :cascade do |t|
     t.string "descripcion"
@@ -25,6 +41,15 @@ ActiveRecord::Schema.define(version: 2024_10_03_174618) do
   create_table "ciudades", force: :cascade do |t|
     t.string "ciudad"
     t.integer "pais_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "clientes", force: :cascade do |t|
+    t.string "nombre"
+    t.string "razon_social"
+    t.string "ruc"
+    t.integer "bomba_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
@@ -61,4 +86,6 @@ ActiveRecord::Schema.define(version: 2024_10_03_174618) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  add_foreign_key "bombas_clientes", "bombas"
+  add_foreign_key "bombas_clientes", "clientes"
 end

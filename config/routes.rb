@@ -1,4 +1,10 @@
 Rails.application.routes.draw do
+  resources :bombas
+  resources :clientes do
+    member do
+      get 'bombas', to: 'clientes#bombas'
+    end
+  end  
   resources :empleados
   resources :paises
   resources :ciudades

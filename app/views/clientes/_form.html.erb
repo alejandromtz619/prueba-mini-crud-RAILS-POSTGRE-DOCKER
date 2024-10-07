@@ -1,0 +1,43 @@
+<%= form_with(model: cliente) do |form| %>
+  <% if cliente.errors.any? %>
+    <div id="error_explanation" class="alert alert-danger">
+      <h2><%= pluralize(cliente.errors.count, "error") %> no se puede guardar:</h2>
+
+      <ul>
+        <% cliente.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <% if @cliente.errors.include?(:bomba_id) %>
+  <div class="alert alert-danger" role="alert">
+    ¡Debes seleccionar un bomba!
+  </div>
+  <% end %>
+
+  <div class="form-group mb-3">
+    <%= form.label :nombre %>
+    <%= form.text_field :nombre, class: 'form-control' %>
+  </div>
+
+  <div class="form-group mb-3">
+    <%= form.label :razon_social %>
+    <%= form.text_field :razon_social, class: 'form-control' %>
+  </div>
+
+  <div class="form-group mb-3">
+    <%= form.label :ruc %>
+    <%= form.text_field :ruc, class: 'form-control' %>
+  </div>
+
+  <div class="form-group mb-3">
+    <%= form.label :bombas %> (Selecciona una o más bombas)<br>
+    <%= form.collection_select :bomba_ids, Bomba.all, :id, :descripcion, {include_blank: 'Ninguna'}, {multiple: true, class: 'form-control'} %>
+  </div>
+
+  <div class="d-flex justify-content-end">
+    <%= form.submit 'Guardar', class: 'btn btn-primary me-2' %>
+    <%= link_to 'Cancelar', clientes_path, class: 'btn btn-secondary' %>
+  </div>
+<% end %>

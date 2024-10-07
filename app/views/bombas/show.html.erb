@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Descripcion:</strong>
+  <%= @bomba.descripcion %>
+</p>
+
+<p>
+  <strong>Coordenadas:</strong>
+  <%= @bomba.coordenadas %>
+</p>
+
+<%= link_to 'Edit', edit_bomba_path(@bomba) %> |
+<%= link_to 'Back', bombas_path %>
