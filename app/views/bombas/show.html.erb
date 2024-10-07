@@ -1,14 +1,35 @@
-<p id="notice"><%= notice %></p>
+<div class="container mt-4">
+  <!-- Notificación -->
+  <% if notice %>
+    <div class="alert alert-info alert-dismissible fade show" role="alert" id="notice">
+      <%= notice %>
+      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+  <% end %>
 
-<p>
-  <strong>Descripcion:</strong>
-  <%= @bomba.descripcion %>
-</p>
+  <!-- Detalles del bomba -->
+  <div class="card shadow-sm">
+    <div class="card-body">
+      <h2 class="card-title mb-4">Detalles de la Bomba</h2>
 
-<p>
-  <strong>Coordenadas:</strong>
-  <%= @bomba.coordenadas %>
-</p>
+      <!-- Bomba -->
+      <p class="mb-3">
+        <strong>Descripcion:</strong>
+        <span class="text-muted"><%= @bomba.descripcion %></span>
+      </p>
 
-<%= link_to 'Edit', edit_bomba_path(@bomba) %> |
-<%= link_to 'Back', bombas_path %>
+      <!-- Coordenadas -->
+      <p class="mb-3">
+        <strong>Coordenadas:</strong>
+        <span class="text-muted"><%= @bomba.coordenadas %></span>
+      </p>
+
+      <!-- Botones de acción -->
+      <div class="d-flex justify-content-between">
+        <%= link_to 'Editar', edit_bomba_path(@bomba), class: "btn btn-primary me-2" %>
+        <%= link_to 'Volver', bombas_path, class: "btn btn-secondary" %>
+      </div>
+    </div>
+  </div>
+</div>
+
