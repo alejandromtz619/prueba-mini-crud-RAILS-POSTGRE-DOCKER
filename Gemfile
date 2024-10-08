@@ -3,7 +3,6 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby '3.2.5'
 
-gem 'select2-rails', '~> 4.0', '>= 4.0.3'
 gem 'simple_form', '~> 5.3.1'
 gem 'bootstrap', '~> 5.2.3'
 gem "sassc-rails"
