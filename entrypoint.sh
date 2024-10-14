@@ -1,9 +1,13 @@
 #!/bin/bash
 set -e
-/myapp/bin/rails db:migrate
 
-# Remove a potentially pre-existing server.pid for Rails.
+# Eliminar un posible PID antiguo
 rm -f /myapp/tmp/pids/server.pid
 
-# Then exec the container's main process (what's set as CMD in the Dockerfile).
+# Ejecutar migraciones pendientes (opcional para producción)
+if [ "$RAILS_ENV" = "production" ]; then
+  bundle exec rails db:migrate
+fi
+
+# Ejecutar el comando del contenedor
 exec "$@"
